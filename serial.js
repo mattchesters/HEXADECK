@@ -11,7 +11,7 @@ var serial = {};
 
   serial.requestPort = function() {
     const filters = [
-      { 'vendorId': 0x2886, 'productId': 0x002f }, // Seeeduino XIAO
+      { 'vendorId': 0x2886, 'productId': 0x802f }, // Seeeduino XIAO
     ];
     return navigator.usb.requestDevice({ 'filters': filters }).then(
       device => new serial.Port(device)
