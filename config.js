@@ -7,8 +7,6 @@
     let buttonOne = document.querySelector('#one');
     let buttonTwo = document.querySelector('#two');
     let buttonThree = document.querySelector('#three');
-    let buttonFour = document.querySelector('#four');
-    let buttonRotary = document.querySelector('#rotary');
     let port;
 
     function connect() {
@@ -28,18 +26,16 @@
       });
     }
 
+    let view = document.getElementById("one");
+
     function onUpdate() {
       if (!port) {
         return;
       }
-
-      let view = new Uint8Array(3);
       view[0] = string(buttonOne.value);
       view[1] = string(buttonTwo.value);
       view[2] = string(buttonThree.value);
-      view[3] = string(buttonFour.value);
-      view[4] = string(buttonRotary.value);
-      port.send(view);
+      port.send(new TextEncoder('utf-8').encode(String.fromCharCode(view)));
     };
 
     buttonOne.addEventListener('input', onUpdate);
